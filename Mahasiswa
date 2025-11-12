@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+
+public class Mahasiswa {
+    private String nim;
+    private String nama;
+    private ArrayList<MataKuliah> daftarMK;
+    private int totalSks;
+
+    public Mahasiswa(String nim, String nama) {
+        this.nim = nim;
+        this.nama = nama;
+        this.daftarMK = new ArrayList<>();
+        this.totalSks = 0;
+    }
+
+    public boolean tambahMataKuliah(MataKuliah mk) {
+        if (totalSks + mk.getSks() <= 24) {
+            daftarMK.add(mk);
+            totalSks += mk.getSks();
+            return true;
+        } else {
+            System.out.println("❌ Total SKS melebihi batas 24 SKS!");
+            return false;
+        }
+    }
+
+    public void cetakKRS() {
+        System.out.println("\n======= KARTU RENCANA STUDI (KRS) =======");
+        System.out.println("NIM   : " + nim);
+        System.out.println("Nama  : " + nama);
+        System.out.println("------------------------------------------");
+        System.out.println("Daftar Mata Kuliah yang Diambil:");
+        for (MataKuliah mk : daftarMK) {
+            System.out.println("- " + mk.toString());
+        }
+        System.out.println("------------------------------------------");
+        System.out.println("Total SKS: " + totalSks);
+        System.out.println("\nDisetujui oleh:");
+        System.out.println("KPS: " + nama);
+        System.out.println("Tanda Tangan: ______________________");
+        System.out.println("==========================================");
+    }
+}
